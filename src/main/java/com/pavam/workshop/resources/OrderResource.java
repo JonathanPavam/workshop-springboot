@@ -1,6 +1,8 @@
 package com.pavam.workshop.resources;
 
+import com.pavam.workshop.entities.Order;
 import com.pavam.workshop.entities.User;
+import com.pavam.workshop.services.OrderService;
 import com.pavam.workshop.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,21 +15,21 @@ import java.io.Serializable;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/users/")
-public class UserResource implements Serializable {
+@RequestMapping(value = "/orders/")
+public class OrderResource implements Serializable {
 
     @Autowired
-    UserService userService;
+    OrderService orderService;
 
     @GetMapping
-    public ResponseEntity<List<User>> findAll(){
-        List<User> list = userService.findAll();
+    public ResponseEntity<List<Order>> findAll(){
+        List<Order> list = orderService.findAll();
         return ResponseEntity.ok().body(list);
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity <User> findById (@PathVariable Long id) {
-        User obj = userService.findById(id);
+    public ResponseEntity <Order> findById (@PathVariable Long id) {
+        Order obj = orderService.findById(id);
         return ResponseEntity.ok().body(obj);
     }
     }
